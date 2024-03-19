@@ -1,4 +1,15 @@
 #COMMANDS POSTGRESQL
+
+#INDEX DE TABLA PARA MEJORAR RENDIMIENTO DE DATOS EN FILTROS
+  
+CREATE UNIQUE INDEX indexeoavg on padfis(
+ clave5 ,
+  pmnprop ,
+  domicilio ,
+  domfis ,
+  municipio
+);
+  
 -- Function: validacionclv(character varying)
 
 -- DROP FUNCTION validacionclv(character varying);
