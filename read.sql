@@ -58,4 +58,28 @@ ALTER FUNCTION validacionpropietario(character varying, character varying)
 
 
 
+---DROP FUNCTION validacionpropietario(character varying, character varying, character varying, character varying);
+
+
+CREATE OR REPLACE FUNCTION validacionpropietario(
+    IN munx character varying,--municipio
+    IN textoigcm1 character varying,--nombres
+    IN textoigcm2 character varying,--apellido paterno
+    IN textoigcm3 character varying,---apellido materno
+    OUT cc bigint)
+  RETURNS bigint AS
+$BODY$
+
+--SELECT count(*) FROM padfis where  municipio = munx and  pmnprop like textoigcm1 ;
+
+--SELECT split_part(trim(pmnprop),' ',1),split_part(trim(pmnprop),' ',2),split_part(trim(pmnprop),' ',3) FROM padfis where municipio = munx and trim(pmnprop) like textoigcm1 and  trim(pmnprop) like textoigcm2 and trim(pmnprop) like textoigcm3 ;
+SELECT count(*) FROM padfis where municipio = munx and trim(pmnprop) like textoigcm1 and  trim(pmnprop) like textoigcm2 and trim(pmnprop) like textoigcm3 ;
+
+$BODY$
+  LANGUAGE sql VOLATILE
+  COST 100;
+ALTER FUNCTION validacionpropietario(character varying, character varying, character varying, character varying)
+  OWNER TO postgres;
+
+
 
